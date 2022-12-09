@@ -5,8 +5,6 @@ import {
   EXCEPTIONSETTYPES,
 } from '../constants/validEDHSetTypes.js';
 
-//     const validSubset = ['Transformers', 'Unfinity']; Add later to further refine sets response
-
 // After recieving res from Scryfall, remove all invalid sets from res sets
 // Helper function defined here as it is only used by the exported function
 function validateSets(sets) {
