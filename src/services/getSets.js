@@ -10,19 +10,19 @@ import {
 // After recieving res from Scryfall, remove all invalid sets from res sets
 // Helper function defined here as it is only used by the exported function
 function validateSets(sets) {
-  let validSets = [];
-
-  sets.data.data.map((set) => {
+  const validSets = sets.data.data.reduce((result, set) => {
+    // The set is a valid set type
     if (VALIDEDHSETTYPES.includes(set.set_type)) {
-      if (
-        EXCEPTIONSETTYPES.includes(set.set_type) &&
-        !VALIDSUBSET.includes(set.name)
-      ) {
-      } else {
-        validSets.push(set);
+      // The set is not in the exception list
+      if (!EXCEPTIONSETTYPES.includes(set.set_type)) {
+        result.push(set);
+        // The set is in the exception list but is a valid set
+      } else if (VALIDSUBSET.includes(set.name)) {
+        result.push(set);
       }
     }
-  });
+    return result;
+  }, []);
 
   return validSets;
 }
