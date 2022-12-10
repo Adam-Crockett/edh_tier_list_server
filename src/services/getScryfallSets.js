@@ -27,7 +27,7 @@ function validateSets(sets) {
 
 // Request a list of all sets from Scryfall
 // Use helper, validateSets(), to remove invalid sets from response.
-export default async function getSets() {
+export default async function getScryfallSets() {
   const instance = axios.create({
     baseURL: 'https://api.scryfall.com',
     responseType: 'json',
@@ -39,6 +39,7 @@ export default async function getSets() {
 
   try {
     const res = await instance.get('/sets');
+    console.log('retrieved sets');
     return validateSets(res);
   } catch (error) {
     console.log(error);
