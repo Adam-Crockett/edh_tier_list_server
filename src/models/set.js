@@ -7,6 +7,7 @@ const setSchema = mongoose.Schema({
   id: { type: String, required: true },
   name: { type: String, required: true },
   object: { type: String, required: true },
+  released_at: { type: Date },
 });
 
 export default mongoose.model('Set', setSchema);
