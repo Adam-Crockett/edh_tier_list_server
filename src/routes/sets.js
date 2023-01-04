@@ -3,6 +3,7 @@ import { createSets, getSets } from '../controllers/sets.js';
 
 const router = express.Router();
 
-router.post('/', createSets);
+router.get('/sets', getSets);
+router.post('/', getSets);
 
 export default router;
