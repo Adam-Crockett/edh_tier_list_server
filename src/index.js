@@ -45,7 +45,7 @@ mongoose
 
 // db.on('error', console.error.bind(console, 'MongoDB connection error: '));
 
-// Query to find cards that are: from target sets, can be your commander, one of the target sets is the card's first printing.
+// Query to find cards that are: from target sets, can be your commander, and one of the target sets is the card's first printing.
 // `https://api.scryfall.com/cards/search?order=name&q=legal%3Acommander+%28set%3A${set1}+OR+set%3A${set2}%29+%28is%3Acommander+is%3Afirstprint%29`,
 
 // async function getCommanders(setArray) {
