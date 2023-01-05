@@ -12,7 +12,7 @@ import mongoose from 'mongoose';
 // });
 
 const setsSchema = mongoose.Schema({
-  createdAt: { type: Date, default: new Date() },
+  createdAt: { type: Date, default: new Date(), expires: 3600 },
   sets: { type: [Object], required: true },
 });
 
