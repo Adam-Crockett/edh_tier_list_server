@@ -16,6 +16,6 @@ const setsSchema = mongoose.Schema({
   sets: { type: [Object], required: true },
 });
 
-setsSchema.index({ createdAt: 1 }, { expireAfterSeconds: 300 });
+setsSchema.index({ createdAt: 1 }, { expireAfterSeconds: 3600 });
 
 export default mongoose.model('Sets', setsSchema);
