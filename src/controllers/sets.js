@@ -4,23 +4,28 @@ import getScryfallSets from '../services/getScryfallSets.js';
 import { dayDateCalculation } from '../constants/utilsValues.js';
 
 export const getSets = async (req, res) => {
-  // res.status(200).json({ message: 'test' });
   try {
     const now = new Date();
-    const validSet = await Sets.findOne({
-      daterating: {
-        $gte: new Date(now.getFullYear, now.getMonth, now.getDay - 7),
-        $lte: new Date(),
-      },
-    }).sort({ createdAt: -1 });
-    if (validSet) {
-      return res.status(200).json(validSet);
+    const validSet = await Sets.findOne().sort({ createdAt: -1 });
+
+    if (validSet || validSet !== null) {
+      res.status(200).json(validSet);
+    } else {
+      const updatedSets = await getScryfallSets();
+      const newSetList = new Sets({
+        createdAt: new Date(),
+        sets: updatedSets,
+      });
+      await newSetList.save();
+      res.status(201).send({ message: newSetList });
     }
   } catch (error) {
     console.log(error);
+    res.status(404).send({ message: 'Error in retrieving sets' });
   }
 };
 
+// Check for removal of this controller, function baked into detSets controller
 export const createSets = async (req, res) => {
   let setList = [];
   let newSetList;
