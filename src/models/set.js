@@ -8,6 +8,8 @@ const setSchema = mongoose.Schema({
   name: { type: String, required: true },
   object: { type: String, required: true },
   released_at: { type: Date },
+  scryfall_uri: { type: String, required: false },
+  search_uri: { type: String, required: false },
 });
 
 export default mongoose.model('Set', setSchema);
