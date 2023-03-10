@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
-import Sets from '../models/sets.js';
+import Sets from '../models/setsUpdate.js';
 import getScryfallSets from '../services/getScryfallSets.js';
 import { dayDateCalculation } from '../constants/utilsValues.js';
+import createSetData from '../utils/createSetData.js';
 
 export const getSets = async (req, res) => {
   try {
@@ -12,9 +13,9 @@ export const getSets = async (req, res) => {
       res.status(200).json(validSet);
     } else {
       const updatedSets = await getScryfallSets();
+      const setList = await createSetData(updatedSets);
       const newSetList = new Sets({
         createdAt: new Date(),
-        sets: updatedSets,
       });
       await newSetList.save();
       res.status(201).send({ message: newSetList });
