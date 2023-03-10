@@ -1,24 +1,25 @@
 import mongoose from 'mongoose';
-import Sets from '../models/setsUpdate.js';
+import ExpireUpdate from '../models/expireUpdate.js';
 import getScryfallSets from '../services/getScryfallSets.js';
 import { dayDateCalculation } from '../constants/utilsValues.js';
 import createSetData from '../utils/createSetData.js';
+import getSetData from '../dbFetch/getSetData.js';
 
 export const getSets = async (req, res) => {
   try {
-    const now = new Date();
-    const validSet = await Sets.findOne().sort({ createdAt: -1 });
+    const validSet = await ExpireUpdate.findOne().sort({ createdAt: -1 });
 
     if (validSet || validSet !== null) {
-      res.status(200).json(validSet);
+      res.status(200).json(await getSetData());
     } else {
       const updatedSets = await getScryfallSets();
       const setList = await createSetData(updatedSets);
-      const newSetList = new Sets({
+      const newExpireUpdate = new ExpireUpdate({
         createdAt: new Date(),
       });
-      await newSetList.save();
-      res.status(201).send({ message: newSetList });
+      await newExpireUpdate.save();
+      const allSetData = getSetData();
+      res.status(201).send({ message: allSetData });
     }
   } catch (error) {
     console.log(error);
@@ -26,7 +27,7 @@ export const getSets = async (req, res) => {
   }
 };
 
-// Check for removal of this controller, function baked into detSets controller
+// Check for removal of this controller, function baked into getSets controller
 export const createSets = async (req, res) => {
   let setList = [];
   let newSetList;
