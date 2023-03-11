@@ -4,13 +4,16 @@ import getScryfallSets from '../services/getScryfallSets.js';
 import { dayDateCalculation } from '../constants/utilsValues.js';
 import createSetData from '../utils/createSetData.js';
 import getSetData from '../dbFetch/getSetData.js';
+import cleanSetDataForMultiselect from '../utils/cleanSetDataForMultiselect.js';
 
 export const getSets = async (req, res) => {
   try {
     const validSet = await ExpireUpdate.findOne().sort({ createdAt: -1 });
 
     if (validSet || validSet !== null) {
-      res.status(200).json(await getSetData());
+      const fetchedSets = await getSetData();
+      const cleanedSets = await cleanSetDataForMultiselect(fetchedSets);
+      res.status(200).json(cleanedSets);
     } else {
       const updatedSets = await getScryfallSets();
       const setList = await createSetData(updatedSets);
@@ -18,8 +21,9 @@ export const getSets = async (req, res) => {
         createdAt: new Date(),
       });
       await newExpireUpdate.save();
-      const allSetData = getSetData();
-      res.status(201).send({ message: allSetData });
+      const fetchedSets = await getSetData();
+      const cleanedSets = await cleanSetDataForMultiselect(fetchedSets);
+      res.status(201).send({ message: cleanedSets });
     }
   } catch (error) {
     console.log(error);
