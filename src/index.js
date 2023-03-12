@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 
 import setRoutes from './routes/sets.js';
 import bodyParser from 'body-parser';
+import periodicDataFetch from './dbFetch/periodicDataFetch.js';
 
 const app = express();
 dotenv.config();
@@ -29,3 +30,7 @@ mongoose
     app.listen(PORT, () => console.log(`Server running on port: ${PORT}`))
   )
   .catch((error) => console.log(error.message));
+
+periodicDataFetch(() => {
+  console.log('Periodic data fetch started');
+}, 86400000);
