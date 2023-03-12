@@ -1,7 +1,7 @@
 import Set from '../models/set.js';
 
+// Possibly delete as sets are now created and baked into periodic update
 const createSetData = async (fetchedSets) => {
-  const setList = [];
   for (const set of fetchedSets) {
     const newSet = new Set({
       code: set.code,
@@ -15,9 +15,8 @@ const createSetData = async (fetchedSets) => {
       search_uri: set.search_uri,
     });
     await newSet.save();
-    setList.push(newSet);
   }
-  return setList;
+  return true;
 };
 
 export default createSetData;
