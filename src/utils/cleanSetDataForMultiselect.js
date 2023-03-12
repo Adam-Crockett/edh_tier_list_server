@@ -9,7 +9,6 @@ const cleanSetDataForMultiselect = async (sets) => {
       code: set.code,
     });
   }
-
   return cleanedSets;
 };
 
