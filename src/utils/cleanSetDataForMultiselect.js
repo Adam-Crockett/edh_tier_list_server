@@ -7,6 +7,7 @@ const cleanSetDataForMultiselect = async (sets) => {
       src: set.icon_svg_uri,
       name: set.name,
       code: set.code,
+      releaseDate: set.released_at,
     });
   }
   return cleanedSets;
