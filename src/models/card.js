@@ -5,11 +5,12 @@ const cardSchema = mongoose.Schema({
   card_faces: { type: Object }, // Further implementation; for the sub-cards of this. Address Dual faced cards.
   color_identity: [String],
   colors: [String],
-  createdAt: { type: Date, default: new Date() },
+  createdAt: { type: Date, default: new Date(), required: true },
   id: { type: String, required: true },
   image_status: { type: String, required: true },
   // Need to pick what images to pick up and what to store vs API reference
-  legalities: { type: legalitiesObject, required: true }, // This may not be needed based on use scope
+  image_uris: { type: Object },
+  legalities: { type: Object, required: true }, // This may not be needed based on use scope
   mana_cost: String,
   name: { type: String, required: true },
   object: { type: String, requried: true },
@@ -17,12 +18,13 @@ const cardSchema = mongoose.Schema({
   power: String,
   set_id: { type: String, required: true },
   set: { type: String, required: true },
+  scryfall_uri: { type: String, required: true },
   toughness: String,
   type_line: String,
 });
 
-const legalitiesObject = mongoose.Schema({
-  commander: { type: String },
-});
+// const legalitiesObject = mongoose.Schema({
+//   commander: { type: String },
+// });
 
 export default mongoose.model('Card', cardSchema);
