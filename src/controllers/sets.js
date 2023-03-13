@@ -1,4 +1,4 @@
-import getSetData from '../dbFetch/getSetData.js';
+import getSetData from '../dbOperations/getSetData.js';
 import cleanSetDataForMultiselect from '../utils/cleanSetDataForMultiselect.js';
 
 export const getSets = async (req, res) => {
@@ -11,5 +11,3 @@ export const getSets = async (req, res) => {
     res.status(404).send({ message: 'Error in retrieving sets' });
   }
 };
-
-export const updateSets = async (req, res) => {};
