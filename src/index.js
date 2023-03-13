@@ -4,8 +4,9 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import setRoutes from './routes/sets.js';
+import cardRoutes from './routes/cards.js';
 import bodyParser from 'body-parser';
-import periodicDataFetch from './dbFetch/periodicDataFetch.js';
+import periodicDataFetch from './dbOperations/periodicDataFetch.js';
 
 const app = express();
 dotenv.config();
@@ -16,6 +17,7 @@ app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
 app.use(cors());
 
 app.use('/sets', setRoutes);
+app.use('/cards', cardRoutes);
 
 app.get('/', (req, res) => {
   res.send('APP IS RUNNING');
@@ -34,3 +36,5 @@ mongoose
 periodicDataFetch(() => {
   console.log('Periodic data fetch started');
 }, 86400000);
+
+// 86400000
