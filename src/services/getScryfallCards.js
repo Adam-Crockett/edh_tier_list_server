@@ -9,8 +9,9 @@ export default async function getScryfallCards(setList) {
       'Accept-Encoding': 'application/json',
     },
   });
-  let completeResult = [];
+  const completeResult = [];
   let sucessCount = 0;
+  const setsWithNoValidCards = [];
   console.log('Retrieving cards from sets...');
   for (let set of setList) {
     try {
@@ -18,14 +19,16 @@ export default async function getScryfallCards(setList) {
       if (res.status === 200) {
         completeResult.push(res.data);
         sucessCount += 1;
+      } else {
       }
     } catch (error) {
+      setsWithNoValidCards.push(set);
       // console.error(`Could not fetch cards from this set: ${set}`);
     }
     await new Promise((resolve) => setTimeout(resolve, 100));
   }
   console.log(`Cards retrieved from ${sucessCount} sets on scryfall.`);
-  return completeResult;
+  return [completeResult, setsWithNoValidCards];
 }
 
 function requestConstructor(code) {
