@@ -23,8 +23,4 @@ const cardSchema = mongoose.Schema({
   type_line: String,
 });
 
-// const legalitiesObject = mongoose.Schema({
-//   commander: { type: String },
-// });
-
 export default mongoose.model('Card', cardSchema);

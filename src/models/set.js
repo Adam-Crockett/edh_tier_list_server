@@ -12,6 +12,4 @@ const setSchema = mongoose.Schema({
   search_uri: { type: String, required: false },
 });
 
-// setSchema.index({ createdAt: 1 }, { expireAfterSeconds: 172800 });
-
 export default mongoose.model('Set', setSchema);
