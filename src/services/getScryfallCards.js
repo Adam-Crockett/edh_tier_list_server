@@ -17,13 +17,14 @@ export default async function getScryfallCards(setList) {
     try {
       const res = await instance.get(requestConstructor(set));
       if (res.status === 200) {
+        console.log(`Cards retrieved from set: ${set}`);
         completeResult.push(res.data);
         sucessCount += 1;
       } else {
       }
     } catch (error) {
       setsWithNoValidCards.push(set);
-      // console.error(`Could not fetch cards from this set: ${set}`);
+      console.error(`Could not fetch cards from this set: ${set}`);
     }
     await new Promise((resolve) => setTimeout(resolve, 100));
   }
