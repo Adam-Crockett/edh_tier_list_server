@@ -4,6 +4,9 @@
   "description": "Server for EDH commander tier list application",
   "main": "./src/index.js",
   "type": "module",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "start": "nodemon index.js"
   },
