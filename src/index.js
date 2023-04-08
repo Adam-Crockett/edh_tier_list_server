@@ -22,7 +22,7 @@ app.use('/cards', cardRoutes);
 app.get('/', (req, res) => {
   res.send('APP IS RUNNING');
 });
-const db = mongoose.connection;
+// const db = mongoose.connection;
 // mongoose
 //   .connect(CONNECTION_URL, {
 //     useUnifiedTopology: true,
@@ -40,10 +40,11 @@ mongoose
   })
   .then(() => console.log(`Server running on port: ${PORT}`))
   .catch((error) => console.log(error.message));
+
 app.listen(PORT);
 
-periodicDataFetch(() => {
-  console.log('Periodic data fetch started');
-}, 86400000);
+// periodicDataFetch(() => {
+//   console.log('Periodic data fetch started');
+// }, 86400000);
 
 // 86400000
