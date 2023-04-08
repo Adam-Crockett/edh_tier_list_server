@@ -33,7 +33,6 @@ app.get('/', (req, res) => {
 //   )
 //   .catch((error) => console.log(error.message));
 mongoose.set('strictQuery', true);
-console.log(CONNECTION_URL);
 mongoose
   .connect(CONNECTION_URL, {
     useUnifiedTopology: true,
