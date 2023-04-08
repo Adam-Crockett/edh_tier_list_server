@@ -43,8 +43,8 @@ mongoose
 
 app.listen(PORT);
 
-// periodicDataFetch(() => {
-//   console.log('Periodic data fetch started');
-// }, 86400000);
+periodicDataFetch(() => {
+  console.log('Periodic data fetch started');
+}, 86400000);
 
 // 86400000
