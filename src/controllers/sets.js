@@ -2,6 +2,7 @@ import getSetData from '../dbOperations/getSetData.js';
 import cleanSetDataForMultiselect from '../utils/cleanSetDataForMultiselect.js';
 
 export const getSets = async (req, res) => {
+  console.log('sets requested');
   try {
     const fetchedSets = await getSetData();
     const cleanedSets = await cleanSetDataForMultiselect(fetchedSets);
