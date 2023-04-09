@@ -22,17 +22,6 @@ app.use('/cards', cardRoutes);
 app.get('/', (req, res) => {
   res.send('APP IS RUNNING');
 });
-// const db = mongoose.connection;
-// mongoose
-//   .connect(CONNECTION_URL, {
-//     useUnifiedTopology: true,
-//     useNewUrlParser: true,
-//   })
-//   .then(() =>
-//     app.listen(PORT, () => console.log(`Server running on port: ${PORT}`))
-//   )
-//   .catch((error) => console.log(error.message));
-// mongoose.set('strictQuery', true);
 mongoose
   .connect(CONNECTION_URL, {
     useUnifiedTopology: true,
