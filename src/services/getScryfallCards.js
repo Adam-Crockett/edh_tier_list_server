@@ -38,3 +38,6 @@ function requestConstructor(code) {
 
 // Query to find cards that are: from target sets, can be your commander, and one of the target sets is the card's first printing.
 // `https://api.scryfall.com/cards/search?order=name&q=legal%3Acommander+%28set%3A${set1}+OR+set%3A${set2}%29+%28is%3Acommander+is%3Afirstprint%29`,
+
+// Query for cards that can be a commander: This query is used to find cards that can be your commander from a set that is not released yet, cards may not be legal or have full data set2:
+// https://scryfall.com/search?as=grid&order=name&q=%28game%3Apaper%29+set%3Amom+is%3Acommander+is%3Afirstprint
