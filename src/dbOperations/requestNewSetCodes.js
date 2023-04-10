@@ -6,7 +6,10 @@ export default async function requestNewSetCodes() {
         if (error) {
           console.error('Error retrieving updated set codes', error);
         } else {
-          const codes = results.map((result) => result.code);
+          const codes = results.map((result) => [
+            result.code,
+            result.released_at,
+          ]);
           console.log(codes.length);
           resolve(codes);
         }
